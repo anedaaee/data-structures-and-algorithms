@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class matrixMult {
-    public final int threshold = 128;
+    public final int threshold = 64;
     public int size;
     public int n;
     public int [][] A;
@@ -149,30 +149,11 @@ public class matrixMult {
         }
         return result;
     }
-    public int[][] makeMatrisEven(int[][]matrix){
-        if((matrix.length % 2) == 1){
-            int [][] copyMatrix = new int[matrix.length + 1][matrix.length + 1];
-            for(int i = 0 ; i <= matrix.length + 1 ; i++){
-                for(int j = 0 ; j <= matrix.length + 1 ; j++){
-                    if(i != matrix.length + 1 && j != matrix.length + 1 ){
-                        copyMatrix[i][j] = matrix[i][j];
-                    }else{
-                        copyMatrix[i][j] = 0;
-                    }
-                }
-            }
-            return copyMatrix;
-        }
-        return matrix;
-    }
     public int[][] strassenMatrixMult1(int[][]A,int[][]B,int n){
         if( n <= this.threshold){
             int[][] result = this.normalMultReturn(A,B);
             return result;
         }else{
-            A = this.makeMatrisEven(A);
-            B = this.makeMatrisEven(B);
-            n = A.length;
             int[][] A11 = get11(n,A);
             int[][] A12 = get12(n,A);
             int[][] A21 = get21(n,A);
@@ -194,9 +175,6 @@ public class matrixMult {
             int [][] result = this.normalMultReturn(A,B);
             return result;
         }else{
-            A = this.makeMatrisEven(A);
-            B = this.makeMatrisEven(B);
-            n = A.length;
             int [][] A11 = get11(n,A);
             int [][] A12 = get12(n,A);
             int [][] A21 = get21(n,A);
